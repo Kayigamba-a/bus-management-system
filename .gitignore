@@ -1,0 +1,10 @@
+.idea/
+*.iml
+target/
+out/
+*.log
+
+# Local secrets / runtime configuration
+.env
+*.env
+src/main/resources/db.properties

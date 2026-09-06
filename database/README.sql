@@ -1,0 +1,8 @@
+-- PostgreSQL 18 database used by this project.
+-- You already created it in pgAdmin:
+--
+--     CREATE DATABASE bus_management_db;
+--
+-- No table-creation SQL is required.
+-- Hibernate uses hibernate.hbm2ddl.auto=update and will create/update
+-- the public.bus and public.route tables automatically when the application starts.

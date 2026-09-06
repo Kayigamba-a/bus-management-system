@@ -1,0 +1,33 @@
+KIGALI BUS MANAGEMENT SYSTEM - GITHUB READY
+============================================
+
+Database expected by the project:
+Database : bus_management_db
+Host     : localhost
+Port     : 5432
+Username : postgres
+
+SECURITY NOTE
+-------------
+The database password is NOT stored in the project or GitHub repository.
+Set it locally in your Tomcat run configuration before starting the app.
+
+In IntelliJ:
+Run > Edit Configurations > Tomcat 9.0.121 > VM options
+
+Use:
+-Ddb.password="YOUR_PASSWORD"
+
+For your local PostgreSQL password, enter the exact password between the quotes.
+Do not commit or publish it.
+
+SETUP
+-----
+1. Open this folder in IntelliJ as a Maven project.
+2. Set the Project SDK to your installed JDK.
+3. Reload Maven.
+4. Configure Tomcat 9 and add the WAR exploded artifact.
+5. Set the local database password in VM options.
+6. Start PostgreSQL and run Tomcat.
+
+Hibernate creates/updates the bus and route tables automatically.

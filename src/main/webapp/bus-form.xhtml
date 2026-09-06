@@ -1,0 +1,92 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <ui:define name="title">#{busBean.bus.busId == null ? 'Register Bus' : 'Edit Bus'} · Kigali Bus Management</ui:define>
+
+    <ui:define name="content">
+        <script type="text/javascript">
+            //<![CDATA[
+            function validateBusForm() {
+                var plate = document.getElementById('busForm:plateNumber').value.trim().toUpperCase();
+                var capacity = document.getElementById('busForm:capacity').value.trim();
+                var plateRegex = /^RA[A-Z]\d{3}[A-Z]$/;
+
+                if (!plateRegex.test(plate)) {
+                    alert('Plate number must use Rwanda format such as RAD123B.');
+                    return false;
+                }
+                if (capacity === '' || isNaN(capacity) || Number(capacity) < 10 || Number(capacity) > 100) {
+                    alert('Capacity must be a number between 10 and 100.');
+                    return false;
+                }
+                return true;
+            }
+            //]]>
+        </script>
+
+        <section class="page-heading">
+            <div>
+                <h2>#{busBean.bus.busId == null ? 'Register New Bus' : 'Edit Bus'}</h2>
+                <p>Fields marked with * are required.</p>
+            </div>
+        </section>
+
+        <h:messages globalOnly="true" showDetail="true"
+                    infoClass="message message-info"
+                    warnClass="message message-warn"
+                    errorClass="message message-error"/>
+
+        <h:form id="busForm" styleClass="form-card" onsubmit="return validateBusForm();">
+            <div class="form-grid">
+                <div class="form-group">
+                    <h:outputLabel for="plateNumber" value="Plate Number *"/>
+                    <h:inputText id="plateNumber" value="#{busBean.bus.plateNumber}" required="true"
+                                 requiredMessage="Plate number is required."
+                                 maxlength="15" pt:placeholder="RAD123B" style="text-transform:uppercase;">
+                        <f:validateRegex pattern="^RA[A-Z]\d{3}[A-Z]$"/>
+                    </h:inputText>
+                    <h:message for="plateNumber" styleClass="field-error"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="model" value="Bus Model *"/>
+                    <h:inputText id="model" value="#{busBean.bus.model}" required="true"
+                                 requiredMessage="Bus model is required." maxlength="50" pt:placeholder="e.g. Yutong ZK6122">
+                        <f:validateLength minimum="2" maximum="50"/>
+                    </h:inputText>
+                    <h:message for="model" styleClass="field-error"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="capacity" value="Capacity (seats) *"/>
+                    <h:inputText id="capacity" value="#{busBean.bus.capacity}" required="true"
+                                 requiredMessage="Capacity is required." pt:type="number" pt:min="10" pt:max="100">
+                        <f:validateLongRange minimum="10" maximum="100"/>
+                    </h:inputText>
+                    <h:message for="capacity" styleClass="field-error"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="status" value="Status *"/>
+                    <h:selectOneMenu id="status" value="#{busBean.bus.status}" required="true"
+                                     requiredMessage="Status is required.">
+                        <f:selectItem itemValue="ACTIVE" itemLabel="Active"/>
+                        <f:selectItem itemValue="MAINTENANCE" itemLabel="Maintenance"/>
+                        <f:selectItem itemValue="INACTIVE" itemLabel="Inactive"/>
+                    </h:selectOneMenu>
+                    <h:message for="status" styleClass="field-error"/>
+                </div>
+            </div>
+
+            <div class="form-actions" style="margin-top:22px;">
+                <h:commandButton value="Save Bus" action="#{busBean.saveBus}" styleClass="btn btn-primary"/>
+                <h:link outcome="/bus-list" value="Cancel" styleClass="btn btn-light"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

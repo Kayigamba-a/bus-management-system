@@ -1,0 +1,40 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="title">Dashboard · Kigali Bus Management</ui:define>
+
+    <ui:define name="content">
+        <section class="page-heading">
+            <div>
+                <h2>Dashboard</h2>
+                <p>Overview of the buses and routes stored in <strong>bus_management_db</strong>.</p>
+            </div>
+            <span class="connection #{dashboardBean.databaseConnected ? 'online' : 'offline'}">
+                #{dashboardBean.databaseConnected ? 'Database connected' : 'Database unavailable'}
+            </span>
+        </section>
+
+        <div class="stats-grid">
+            <div class="stat-card"><span>Total buses</span><strong>#{dashboardBean.totalBuses}</strong></div>
+            <div class="stat-card"><span>Active buses</span><strong>#{dashboardBean.activeBuses}</strong></div>
+            <div class="stat-card"><span>Maintenance</span><strong>#{dashboardBean.maintenanceBuses}</strong></div>
+            <div class="stat-card"><span>Inactive buses</span><strong>#{dashboardBean.inactiveBuses}</strong></div>
+            <div class="stat-card"><span>Total routes</span><strong>#{dashboardBean.totalRoutes}</strong></div>
+        </div>
+
+        <div class="quick-grid">
+            <div class="quick-card">
+                <h3>Bus Management</h3>
+                <p>Register buses, update their capacity and operating status, search records, and delete retired records.</p>
+                <h:link outcome="/bus-list" value="Manage buses" styleClass="btn btn-primary"/>
+            </div>
+            <div class="quick-card">
+                <h3>Route Management</h3>
+                <p>Create Kigali routes with start/end points, distance and estimated travel duration.</p>
+                <h:link outcome="/route-list" value="Manage routes" styleClass="btn btn-primary"/>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
