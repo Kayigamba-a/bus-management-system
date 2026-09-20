@@ -12,7 +12,7 @@ Spring Boot REST API implementing complete CRUD operations for Bus, Route, and S
 Create a PostgreSQL database named `bus_management_db`.
 
 Default local configuration:
-- URL: `jdbc:postgresql://localhost:5432/bus_management_db`
+- URL: `jdbc:postgresql://localhost:5433/bus_management_db`
 - Username: `postgres`
 - Password: `postgres`
 
@@ -23,7 +23,7 @@ You can override these with environment variables `DB_URL`, `DB_USERNAME`, and `
 mvn spring-boot:run
 ```
 
-Base URL: `http://localhost:8080`
+Base URL: `http://localhost:8088`
 
 ## REST endpoints
 
@@ -61,4 +61,4 @@ Base URL: `http://localhost:8080`
 - One bus cannot have two schedules at the same departure time on the same day.
 - A Bus or Route referenced by a Schedule cannot be deleted.
 
-Import the Postman collection from `postman/KBMS_Assignment4.postman_collection.json`.
+Import the Postman collection from `postman/KBMS-WEBTECH.postman_collection.json`.

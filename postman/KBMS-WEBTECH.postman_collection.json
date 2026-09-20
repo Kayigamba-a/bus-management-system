@@ -1,0 +1,74 @@
+{
+  "info": {
+    "_postman_id": "91130dce-d971-4421-b836-237d8688e4e8",
+    "name": "KBMS-WEBTECH",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57840062",
+    "_collection_link": "https://go.postman.co/collection/57840062-91130dce-d971-4421-b836-237d8688e4e8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "SPRING-ASS4",
+      "item": [
+        {
+          "name": "http://localhost:8088/api/schedules",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"busId\": 1,\r\n  \"routeId\": 1,\r\n  \"departureTime\": \"08:00:00\",\r\n  \"arrivalTime\": \"09:00:00\",\r\n  \"dayOfOperation\": \"MONDAY\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8088/api/schedules",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8088",
+              "path": [
+                "api",
+                "schedules"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:8088/api/buses",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"plateNumber\": \"ABC123\",\r\n  \"model\": \"Toyota\",\r\n  \"capacity\": 5,\r\n  \"status\": \"ACTIVE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8088/api/buses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8088",
+              "path": [
+                "api",
+                "buses"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
