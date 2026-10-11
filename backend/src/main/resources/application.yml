@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        secure: ${SESSION_COOKIE_SECURE:false}
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/kbms}
+    username: ${DB_USER:kbms}
+    password: ${DB_PASSWORD:kbms_dev_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/kbms}
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: 5672
+    username: guest
+    password: guest
+app:
+  origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+  seed-admin-email: ${ADMIN_EMAIL:admin@kbms.rw}
+  seed-admin-password: ${ADMIN_PASSWORD:ChangeMe123!}
